@@ -1,0 +1,6 @@
+[submodule "Candle/vendor/spdlog"]
+	path = Candle/vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "Candle/vendor/GLFW"]
+	path = Candle/vendor/GLFW
+	url = https://github.com/TheCherno/GLFW
