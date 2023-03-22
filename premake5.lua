@@ -14,8 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to sol dir
 IncludeDir = {}
 IncludeDir["GLFW"] = "Candle/vendor/GLFW/include"
+IncludeDir["Glad"] = "Candle/vendor/Glad/include"
 
 include "Candle/vendor/GLFW"
+include "Candle/vendor/Glad"
+
 
 project "Candle"
 	location "Candle"
@@ -38,12 +41,14 @@ project "Candle"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib",
 	}
 
@@ -56,6 +61,7 @@ project "Candle"
 		{
 			"CD_PLATFORM_WINDOWS",
 			"CD_BUILD_DLL",
+			"GLFW_INCLUDE_NONE",
 		}
 
 		postbuildcommands
