@@ -6,5 +6,7 @@
 #include "Candle/Log.h"
 #include "Candle/Layer.h"
 
+#include "Candle/imgui/ImGuiLayer.h"
+
 //======== Entry Point ==============
 #include "Candle/EntryPoint.h"

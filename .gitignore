@@ -44,3 +44,6 @@ Intermediates/
 *.exe
 *.out
 *.app
+
+#Imgui
+imgui.ini

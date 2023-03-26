@@ -27,6 +27,8 @@ public:
 	{
 		ExampleLayer* layer = new ExampleLayer();
 		PushLayer(layer);
+
+		PushOverlay(new Candle::ImGuiLayer());
 	}
 	~Sandbox()
 	{
