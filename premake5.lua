@@ -26,6 +26,7 @@ project "Candle"
 	location "Candle"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -58,7 +59,6 @@ project "Candle"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "off"
 		systemversion "latest"
 
 		defines
