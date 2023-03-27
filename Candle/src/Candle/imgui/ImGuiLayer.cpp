@@ -2,7 +2,6 @@
 #include "ImGuiLayer.h"
 
 #include "imgui.h"
-#include "Platform/OpenGL/imgui_impl_glfw.h"
 #include "Platform/OpenGL/imgui_impl_opengl3.h"
 
 #include "GLFW/glfw3.h"
@@ -35,7 +34,7 @@ namespace Candle
 
 		ImGui::StyleColorsDark();
 
-		ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)&Application::Get().GetWindow(), true);
+		//ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)&Application::Get().GetWindow(), true);
 		ImGui_ImplOpenGL3_Init("#version 410");
 	}
 
