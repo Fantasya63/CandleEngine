@@ -4,6 +4,8 @@
 
 #include "Candle/Log.h"
 
+#include "glad/glad.h"
+
 namespace Candle 
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
@@ -41,8 +43,12 @@ namespace Candle
 
 	void Application::Run()
 	{
+
 		while (m_Running)
 		{
+			glClearColor(0, 0, 0, 0);
+			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* layer : m_LayerStack)
 			{
 				layer->OnUpdate();

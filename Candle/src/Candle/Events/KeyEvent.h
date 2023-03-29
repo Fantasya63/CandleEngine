@@ -58,4 +58,21 @@ namespace Candle {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
+	class CANDLE_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent(int _keyCode)
+			: KeyEvent(_keyCode) {}
+
+		//Should only used for debug purposes
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << m_KeyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
+
 }

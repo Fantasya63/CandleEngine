@@ -2,6 +2,9 @@
 
 #include "Candle/Core.h"
 
+#define EVENT_HANDLED true;
+#define EVENT_PROPAGATE false;
+
 namespace Candle {
 
 	// Currently a blocking Event
@@ -11,7 +14,7 @@ namespace Candle {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
