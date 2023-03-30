@@ -10,6 +10,12 @@
 	#error Candle Only Supports Windows
 #endif // CD_PLATFORM_WINDOWS
 
+
+#ifdef CD_DEBUG
+	#define CD_ENABLE_ASSERTS
+#endif
+
+
 #ifdef  CD_ENABLE_ASSERTS
 	#define CD_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
 	#define CD_CORE_ASSERT(x, ...)  { if(!(x)) { HZ_CORE_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
