@@ -17,8 +17,8 @@
 
 
 #ifdef  CD_ENABLE_ASSERTS
-	#define CD_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
-	#define CD_CORE_ASSERT(x, ...)  { if(!(x)) { HZ_CORE_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
+	#define CD_ASSERT(x, ...) { if(!(x)) { CD_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
+	#define CD_CORE_ASSERT(x, ...)  { if(!(x)) { CD_CORE_ERROR("{0}|| Assertion Failed: {1}", __LINE__, __VA_ARGS__); __debugbreak(); } }
 #else
 	#define CD_ASSERT(x, ...)
 	#define CD_CORE_ASSERT(x, ...)
