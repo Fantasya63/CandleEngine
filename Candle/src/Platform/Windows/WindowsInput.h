@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Candle/Input.h"
+#include "Candle/Input/Input.h"
 
 namespace Candle{
 

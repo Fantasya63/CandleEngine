@@ -11,12 +11,15 @@ public:
 
 	void OnUpdate() override
 	{
-		CD_INFO("EXAMPLE LAYER UPDATE");
+		if (Candle::Input::IsKeyPressed(CD_KEY_A))
+		{
+			CD_INFO("I LOVE YOU AUDRAYYYYYYY");
+		}
 	}
 
 	void OnEvent(Candle::Event& event) override
 	{
-		CD_INFO("EXAMPLE LAYER EVENT");
+		
 	}
 };
 
