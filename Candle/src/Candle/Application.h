@@ -6,6 +6,8 @@
 #include "Candle/Events/Event.h"
 #include "Candle/Events/ApplicationEvent.h"
 
+#include "Candle/imgui/ImGuiLayer.h"
+
 namespace Candle {
 	class CANDLE_API Application
 	{
@@ -27,6 +29,8 @@ namespace Candle {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

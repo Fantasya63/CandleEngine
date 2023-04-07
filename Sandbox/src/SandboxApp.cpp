@@ -13,7 +13,7 @@ public:
 	{
 		if (Candle::Input::IsKeyPressed(CD_KEY_A))
 		{
-			CD_INFO("I LOVE YOU AUDRAYYYYYYY");
+			
 		}
 	}
 
@@ -31,7 +31,6 @@ public:
 		ExampleLayer* layer = new ExampleLayer();
 		PushLayer(layer);
 
-		PushOverlay(new Candle::ImGuiLayer());
 	}
 	~Sandbox()
 	{
