@@ -1,14 +1,10 @@
 #pragma once
 
-#ifdef CD_PLATFORM_WINDOWS
-	#ifdef CD_BUILD_DLL
-		#define CANDLE_API __declspec(dllexport)
-	#else
-		#define CANDLE_API __declspec(dllimport)
-	#endif // CD_BUILD_DLL
-#else
-	#error Candle Only Supports Windows
-#endif // CD_PLATFORM_WINDOWS
+//#ifdef CD_PLATFORM_WINDOWS
+//	// Removed DLL Import export
+//#else
+//	#error Candle Only Supports Windows
+//#endif // CD_PLATFORM_WINDOWS
 
 
 #ifdef CD_DEBUG

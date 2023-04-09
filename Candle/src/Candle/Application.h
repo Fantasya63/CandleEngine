@@ -9,7 +9,7 @@
 #include "Candle/imgui/ImGuiLayer.h"
 
 namespace Candle {
-	class CANDLE_API Application
+	class Application
 	{
 	public:
 		Application();

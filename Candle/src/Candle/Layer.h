@@ -7,7 +7,7 @@
 //TODO ADD eneble disable layers
 namespace Candle
 {
-	class CANDLE_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");

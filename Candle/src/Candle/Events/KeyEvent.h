@@ -4,7 +4,7 @@
 
 namespace Candle {
 
-	class CANDLE_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return m_KeyCode; }
@@ -19,7 +19,7 @@ namespace Candle {
 	};
 
 
-	class CANDLE_API KeyPressedEvent : public KeyEvent
+	class KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int _keyCode, int _repeatCount)
@@ -41,7 +41,7 @@ namespace Candle {
 	};
 
 
-	class CANDLE_API KeyReleasedEvent : public KeyEvent
+	class KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int _keyCode)
@@ -58,7 +58,7 @@ namespace Candle {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class CANDLE_API KeyTypedEvent : public KeyEvent
+	class KeyTypedEvent : public KeyEvent
 	{
 	public:
 		KeyTypedEvent(int _keyCode)

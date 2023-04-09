@@ -4,7 +4,7 @@
 
 namespace Candle {
 
-	class CANDLE_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -27,7 +27,7 @@ namespace Candle {
 		float m_x, m_y;
 	};
 
-	class CANDLE_API MouseScrolledEvent : public Candle::Event
+	class MouseScrolledEvent : public Candle::Event
 	{
 	public:
 		MouseScrolledEvent(float _xOffset, float _yOffset)
@@ -48,7 +48,7 @@ namespace Candle {
 		float m_XOffset, m_YOffset;
 	};
 
-	class CANDLE_API MouseButtonEvent : public Event {
+	class MouseButtonEvent : public Event {
 	public:
 		inline int GetMouseButton() const { return m_Button; }
 
@@ -61,7 +61,7 @@ namespace Candle {
 		int m_Button;
 	};
 
-	class CANDLE_API MouseButtonPressed : public MouseButtonEvent
+	class MouseButtonPressed : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressed(int button)
@@ -77,7 +77,7 @@ namespace Candle {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class CANDLE_API MouseButtonReleased : public MouseButtonEvent
+	class MouseButtonReleased : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleased(int button)

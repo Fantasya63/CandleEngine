@@ -6,7 +6,7 @@
 
 namespace Candle 
 {
-	class CANDLE_API Log
+	class Log
 	{
 	public:
 		static void Init();

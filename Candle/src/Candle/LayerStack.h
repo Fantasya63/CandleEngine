@@ -5,7 +5,7 @@
 
 namespace Candle
 {
-	class CANDLE_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();
