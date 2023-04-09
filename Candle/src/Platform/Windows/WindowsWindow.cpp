@@ -5,6 +5,8 @@
 #include "Candle/Events/MouseEvent.h"
 #include "Candle/Events/KeyEvent.h"
 
+#include "Platform/OpenGL/OpenGlContext.h"
+
 #include <glad/glad.h>
 
 
@@ -56,11 +58,11 @@ namespace Candle {
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
 
-		int status = gladLoadGLLoader((GLADloadproc) glfwGetProcAddress);
-		CD_CORE_ASSERT(status, "Failed to initialize Glad.");
-
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -159,7 +161,7 @@ namespace Candle {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

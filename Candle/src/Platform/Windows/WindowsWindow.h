@@ -3,6 +3,7 @@
 #include "Candle/Window.h"
 
 #include <GLFW/glfw3.h>
+#include "Candle/Renderer/GraphicsContext.h"
 
 namespace Candle {
 
@@ -29,6 +30,7 @@ namespace Candle {
 
     private:
         GLFWwindow* m_Window;
+        GraphicsContext* m_Context;
 
         struct WindowData
         {
