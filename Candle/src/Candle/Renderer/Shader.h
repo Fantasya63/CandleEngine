@@ -12,7 +12,7 @@ namespace Candle
 		void UnBind() const; // Usually for debug cause you down wast time unbinding, you just bind the next stuff
 
 	private:
-		uint32_t m_ProgramID; // m_RendererID in Cherno's game engine series
+		uint32_t m_RendererID; 
 	};
 }
 

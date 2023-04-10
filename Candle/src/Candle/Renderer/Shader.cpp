@@ -78,7 +78,7 @@ namespace Candle
 		// Now time to link them together into a program.
 		// Get a program object.
 		GLuint program = glCreateProgram();
-		m_ProgramID = program;
+		m_RendererID = program;
 
 		// Attach our shaders to our program
 		glAttachShader(program, vertexShader);
@@ -118,11 +118,11 @@ namespace Candle
 
 	Shader::~Shader()
 	{
-		glDeleteProgram(m_ProgramID);
+		glDeleteProgram(m_RendererID);
 	}
 	void Shader::Bind() const
 	{
-		glUseProgram(m_ProgramID);
+		glUseProgram(m_RendererID);
 	}
 	void Shader::UnBind() const
 	{
