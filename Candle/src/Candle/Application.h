@@ -8,6 +8,9 @@
 
 #include "Candle/imgui/ImGuiLayer.h"
 
+//Temporary
+#include "Renderer/Shader.h"
+
 namespace Candle {
 	class Application
 	{
@@ -35,6 +38,9 @@ namespace Candle {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+
+		//temp
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};

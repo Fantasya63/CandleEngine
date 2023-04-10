@@ -48,6 +48,31 @@ namespace Candle
 		unsigned int indices[3] = { 0, 1, 2 };
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
+		std::string vertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec4 a_Position;
+
+			void main()
+			{
+				gl_Position = a_Position;
+			}
+
+		)";
+
+		std::string fragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 outCol;
+
+			void main()
+			{
+				outCol = vec4(0.8, 0.2, 0.3, 1.0);
+			}
+
+		)";
+
+		m_Shader.reset(new Shader(vertexSrc, fragmentSrc));
 	}
 
 	Application::~Application()
@@ -78,6 +103,7 @@ namespace Candle
 			glClearColor(0, 0, 0, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			m_Shader->Bind();
 			glBindVertexArray(m_VertexArray);
 			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 
