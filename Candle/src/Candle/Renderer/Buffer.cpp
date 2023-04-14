@@ -29,6 +29,7 @@ namespace Candle
 	{
 		switch (Renderer::GetAPI())
 		{
+
 		case RendererAPI::None:
 			CD_CORE_ASSERT(false, "RenderAPI::None is currently not supported!");
 			return nullptr;

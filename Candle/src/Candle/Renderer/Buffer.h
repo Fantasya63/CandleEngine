@@ -100,6 +100,10 @@ namespace Candle
 		uint32_t m_Stride = 0;
 	};
 
+	
+	// --------------Vertex Buffer ----------------------------------------------
+
+
 	class VertexBuffer
 	{
 	public:
@@ -112,6 +116,10 @@ namespace Candle
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 	};
+
+
+	// --------------Index Buffer ----------------------------------------------
+
 
 	class IndexBuffer
 	{
