@@ -8,11 +8,6 @@
 
 #include "Candle/imgui/ImGuiLayer.h"
 
-//Temporary
-#include "Renderer/Shader.h"
-#include "Renderer/Buffer.h"
-#include "Renderer/VertexArray.h"
-
 namespace Candle {
 	class Application
 	{
