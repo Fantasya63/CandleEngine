@@ -1,5 +1,8 @@
 #pragma once
 #include "glm/glm.hpp"
+#include "VertexArray.h"
+#include <memory>
+
 
 namespace Candle
 {
@@ -12,10 +15,10 @@ namespace Candle
 		};
 
 	public:
-		virtual void SetClearColor(const glm::vec4& color) = 0;
+		virtual void SetClearColor(const glm::vec4& color) const = 0;
 		virtual void Clear() const = 0;
 
-		//virtual void DrawIndexed(const std::shared_ptr<>) = 0;
+		virtual void DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) = 0;
 
 		inline static API GetAPI() { return s_API; }
 

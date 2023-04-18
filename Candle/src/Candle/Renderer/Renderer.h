@@ -1,19 +1,17 @@
 #pragma once
+#include "RenderCommand.h"
 
 namespace Candle
-{
+{ 
 
-	enum class RendererAPI
+	class Renderer 
 	{
-		None = 0, OpenGL = 1
-	};
-
-	class Renderer {
 	public:
-		inline static RendererAPI GetAPI() { return s_RendererAPI; }
+		static void BeginScene(); //TODO, Take in cam, environment, lights, etc
+		static void EndScene();
 
+		static void Submit(const std::shared_ptr<VertexArray>& vertexArray);
 
-	private:
-		static RendererAPI s_RendererAPI;
+		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	};
 }

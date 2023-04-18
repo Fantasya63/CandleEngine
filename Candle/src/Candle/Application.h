@@ -39,19 +39,6 @@ namespace Candle {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		//temp
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		// -----------------------------------------
-
-		std::shared_ptr<VertexBuffer> m_SquareVBO;
-		std::shared_ptr<IndexBuffer> m_SquareIBO;
-		std::shared_ptr<VertexArray> m_SquareVAO;
-
-
 	private:
 		static Application* s_Instance;
 	};

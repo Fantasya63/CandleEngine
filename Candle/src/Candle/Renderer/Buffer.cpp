@@ -12,11 +12,11 @@ namespace Candle
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			CD_CORE_ASSERT(false, "RenderAPI::None is currently not supported!");
 			return nullptr;
 			
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -30,11 +30,11 @@ namespace Candle
 		switch (Renderer::GetAPI())
 		{
 
-		case RendererAPI::None:
+		case RendererAPI::API::None:
 			CD_CORE_ASSERT(false, "RenderAPI::None is currently not supported!");
 			return nullptr;
 
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLIndexBuffer(indices, count);
 		}
 
