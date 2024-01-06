@@ -17,10 +17,14 @@ IncludeDir["GLFW"] = "Candle/vendor/GLFW/include"
 IncludeDir["Glad"] = "Candle/vendor/Glad/include"
 IncludeDir["imgui"] = "Candle/vendor/imgui"
 IncludeDir["glm"] = "Candle/vendor/glm"
+IncludeDir["entt"] = "Candle/vendor/entt/include"
 
-include "Candle/vendor/GLFW"
-include "Candle/vendor/Glad"
-include "Candle/vendor/imgui"
+
+group "Dependencies"
+	include "Candle/vendor/GLFW"
+	include "Candle/vendor/Glad"
+	include "Candle/vendor/imgui"
+group ""
 
 
 project "Candle"
@@ -57,6 +61,8 @@ project "Candle"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
+
 	}
 
 	links
@@ -116,6 +122,7 @@ project "Sandbox"
 		"Candle/vendor/spdlog/include",
 		"Candle/src",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
 	}
 
 	links
