@@ -5,6 +5,7 @@
 #include "Candle/Core/Application.h"
 #include "Candle/Core/Log.h"
 #include "Candle/Core/Layer.h"
+#include "Candle/Core/Timestep.h"
 
 #include "Candle/imgui/ImGuiLayer.h"
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Candle/Core.h"
+#include "Candle/Core/Timestep.h"
 #include <Candle/Events/Event.h>
 
 //TODO At macros to remove debug names
@@ -15,7 +16,7 @@ namespace Candle
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

@@ -3,8 +3,8 @@
 #include "Application.h"
 
 #include "Candle/Core/Log.h"
+#include "Candle/Core/Platform.h"
 #include "Candle/Renderer/Renderer.h"
-
 
 
 namespace Candle 
@@ -51,10 +51,13 @@ namespace Candle
 
 		while (m_Running)
 		{
+			float time = Platform::GetTime();
+			Timestep ts = time - m_LastFrameTime;
+			m_LastFrameTime = time;
 
 			for (Layer* layer : m_LayerStack)
 			{
-				layer->OnUpdate();
+				layer->OnUpdate(ts);
 			}
 
 			m_ImGuiLayer->Begin();

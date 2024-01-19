@@ -90,7 +90,7 @@ public:
 		m_SquareVAO->SetIndexBuffer(m_SquareIBO);
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Candle::Timestep ts) override
 	{
 		Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 		Candle::RenderCommand::Clear();
