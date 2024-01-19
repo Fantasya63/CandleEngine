@@ -1,7 +1,7 @@
 #include "cdpch.h"
 #include "WindowsInput.h"
 
-#include "Candle/Application.h"
+#include "Candle/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Candle

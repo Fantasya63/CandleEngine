@@ -2,7 +2,7 @@
 
 #include "Application.h"
 
-#include "Candle/Log.h"
+#include "Candle/Core/Log.h"
 #include "Candle/Renderer/Renderer.h"
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Candle/Window.h"
+#include "Candle/Core/Window.h"
 
 #include <GLFW/glfw3.h>
 #include "Candle/Renderer/GraphicsContext.h"

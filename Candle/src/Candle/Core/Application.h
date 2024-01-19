@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Core.h"
 #include "Window.h"
-#include "Candle/LayerStack.h"
+#include "Candle/Core/LayerStack.h"
 #include "Candle/Events/Event.h"
 #include "Candle/Events/ApplicationEvent.h"
 

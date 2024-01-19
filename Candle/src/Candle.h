@@ -2,9 +2,9 @@
 
 //FOR USE BY CANDLE APPLICATIONS ONLY
 
-#include "Candle/Application.h"
-#include "Candle/Log.h"
-#include "Candle/Layer.h"
+#include "Candle/Core/Application.h"
+#include "Candle/Core/Log.h"
+#include "Candle/Core/Layer.h"
 
 #include "Candle/imgui/ImGuiLayer.h"
 

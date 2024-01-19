@@ -12,7 +12,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Candle/Log.h"
+#include "Candle/Core/Log.h"
 
 #ifdef CD_PLATFORM_WINDOWS
 	#include <Windows.h>
