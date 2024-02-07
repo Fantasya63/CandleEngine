@@ -31,6 +31,16 @@ namespace Candle
 			: Tag(tag) {}
 	};
 
+	struct CameraComponent
+	{
+		float FOV = 45.0f;
+		float m_NearClip = 0.01f;
+		float m_FarClip = 160.0f;
+
+		CameraComponent() = default;
+		CameraComponent(float fov)
+			: FOV(fov) {}
+	};
 
 	struct TransformComponent
 	{

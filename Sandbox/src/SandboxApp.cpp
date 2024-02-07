@@ -116,16 +116,16 @@ public:
 
 private:
 	//temp
-	std::shared_ptr<Candle::Shader> m_Shader;
-	std::shared_ptr<Candle::VertexBuffer> m_VertexBuffer;
-	std::shared_ptr<Candle::IndexBuffer> m_IndexBuffer;
-	std::shared_ptr<Candle::VertexArray> m_VertexArray;
+	Candle::Ref<Candle::Shader> m_Shader;
+	Candle::Ref<Candle::VertexBuffer> m_VertexBuffer;
+	Candle::Ref<Candle::IndexBuffer> m_IndexBuffer;
+	Candle::Ref<Candle::VertexArray> m_VertexArray;
 
 	// -----------------------------------------
 
-	std::shared_ptr<Candle::VertexBuffer> m_SquareVBO;
-	std::shared_ptr<Candle::IndexBuffer> m_SquareIBO;
-	std::shared_ptr<Candle::VertexArray> m_SquareVAO;
+	Candle::Ref<Candle::VertexBuffer> m_SquareVBO;
+	Candle::Ref<Candle::IndexBuffer> m_SquareIBO;
+	Candle::Ref<Candle::VertexArray> m_SquareVAO;
 };
 
 class Sandbox : public Candle::Application
