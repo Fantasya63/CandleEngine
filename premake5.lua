@@ -18,7 +18,7 @@ IncludeDir["Glad"] = "Candle/vendor/Glad/include"
 IncludeDir["imgui"] = "Candle/vendor/imgui"
 IncludeDir["glm"] = "Candle/vendor/glm"
 IncludeDir["entt"] = "Candle/vendor/entt/include"
-
+IncludeDir["stb"] = "Candle/vendor/stb"
 
 group "Dependencies"
 	include "Candle/vendor/GLFW"
@@ -46,6 +46,8 @@ project "Candle"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/**.hpp",
 		"%{prj.name}/vendor/glm/**.inl",
+		"%{prj.name}/vendor/stb/**.h",
+		"%{prj.name}/vendor/stb/**.cpp",
 	}
 
 	defines
@@ -62,7 +64,7 @@ project "Candle"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
-
+		"%{IncludeDir.stb}",
 	}
 
 	links
