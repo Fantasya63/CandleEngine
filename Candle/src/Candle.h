@@ -17,11 +17,10 @@
 
 // --------Rendering-------------
 
-#include "Candle/Renderer/Shader.h"
-
 #include "Candle/Renderer/Buffer.h"
-#include "Candle/Renderer/VertexArray.h"
+#include "Candle/Renderer/Shader.h"
 #include "Candle/Renderer/Texture.h"
+#include "Candle/Renderer/VertexArray.h"
 
 #include "Candle/Renderer/Renderer.h"
 #include "Candle/Renderer/RenderCommand.h"

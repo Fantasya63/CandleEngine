@@ -125,6 +125,7 @@ project "Sandbox"
 		"Candle/src",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
+		"%{IncludeDir.imgui}",
 	}
 
 	links

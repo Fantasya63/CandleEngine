@@ -1,5 +1,8 @@
 #include <Candle.h>
+#include "glm/glm.hpp"
 
+#include <glm/gtc/type_ptr.hpp>
+#include "imgui.h"
 
 class ExampleLayer : public Candle::Layer
 {
@@ -39,18 +42,22 @@ public:
 			layout(location = 0) out vec4 outCol;
 
 			uniform sampler2D u_danboTex;
+			uniform vec3 u_Color;
 
 			in vec3 v_Color;
 			in vec2 v_UV;
 
 			void main()
 			{
-				outCol = texture(u_danboTex, v_UV);
+				vec3 temp = texture(u_danboTex, v_UV).rgb;
+				temp = temp * u_Color;				
+
+				outCol = vec4(temp, 1.0);
 			}
 
 		)";
 
-		m_Shader.reset(new Candle::Shader(vertexSrc, fragmentSrc));
+		m_Shader = Candle::Shader::Create(vertexSrc, fragmentSrc);
 
 		// ---------------------------------------------------------------------
 
@@ -84,7 +91,7 @@ public:
 		Candle::Renderer::BeginScene();
 		{
 			m_Shader->Bind();
-
+			m_Shader->SetFloat3("u_Color", m_Color);
 			// Temp
 			m_SquareTexture->Bind();
 			Candle::Renderer::Submit(m_SquareVAO);
@@ -98,8 +105,16 @@ public:
 		
 	}
 
+	virtual void OnImGuiRender()
+	{
+		ImGui::Begin("Test");
+		ImGui::ColorEdit3("Color", glm::value_ptr(m_Color));
+		ImGui::End();
+	}
+
 private:
 	//temp
+	glm::vec3 m_Color;
 	Candle::Ref<Candle::Shader> m_Shader;
 
 	// -----------------------------------------
