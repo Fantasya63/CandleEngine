@@ -24,6 +24,10 @@ public:
 			layout(location = 1) in vec3 a_Color;
 			layout(location = 2) in vec2 a_UV;
 
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Model;
+
 			out vec3 v_Color;
 			out vec2 v_UV;
 
@@ -31,7 +35,7 @@ public:
 			{
 				v_UV = a_UV;
 				v_Color = a_Color;
-				gl_Position = a_Position;
+				gl_Position = u_ViewProjection * u_Model * a_Position;
 			}
 
 		)";
@@ -88,13 +92,13 @@ public:
 		Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 		Candle::RenderCommand::Clear();
 
-		Candle::Renderer::BeginScene();
+		Candle::Renderer::BeginScene(m_Camera);
 		{
 			m_Shader->Bind();
 			m_Shader->SetFloat3("u_Color", m_Color);
 			// Temp
 			m_SquareTexture->Bind();
-			Candle::Renderer::Submit(m_SquareVAO);
+			Candle::Renderer::Submit(m_Shader, m_SquareVAO);
 
 		}
 		Candle::Renderer::EndScene();
@@ -114,10 +118,11 @@ public:
 
 private:
 	//temp
-	glm::vec3 m_Color;
+	glm::vec3 m_Color = { 1.0f, 0.0f, 0.0f };
 	Candle::Ref<Candle::Shader> m_Shader;
 
 	// -----------------------------------------
+	Candle::Camera m_Camera = Candle::Camera(glm::radians(50.0f), 1200.0f / 720.0f, 0.1f, 1000.0f, glm::translate(glm::mat4(1.0), { 0.0f, 0.0f, 1.0f }));
 
 	Candle::Ref<Candle::VertexBuffer> m_SquareVBO;
 	Candle::Ref<Candle::IndexBuffer> m_SquareIBO;
