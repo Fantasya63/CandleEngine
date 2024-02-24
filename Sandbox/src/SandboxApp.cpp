@@ -17,51 +17,7 @@ public:
 			{ Candle::ShaderDataType::Float2, "a_UV", false}
 		};
 
-		std::string vertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec4 a_Position;
-			layout(location = 1) in vec3 a_Color;
-			layout(location = 2) in vec2 a_UV;
-
-
-			uniform mat4 u_ViewProjection;
-			uniform mat4 u_Model;
-
-			out vec3 v_Color;
-			out vec2 v_UV;
-
-			void main()
-			{
-				v_UV = a_UV;
-				v_Color = a_Color;
-				gl_Position = u_ViewProjection * u_Model * a_Position;
-			}
-
-		)";
-
-		std::string fragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 outCol;
-
-			uniform sampler2D u_danboTex;
-			uniform vec3 u_Color;
-
-			in vec3 v_Color;
-			in vec2 v_UV;
-
-			void main()
-			{
-				vec3 temp = texture(u_danboTex, v_UV).rgb;
-				temp = temp * u_Color;				
-
-				outCol = vec4(temp, 1.0);
-			}
-
-		)";
-
-		m_Shader = Candle::Shader::Create(vertexSrc, fragmentSrc);
+		m_Shader = Candle::Shader::Create("assets/shaders/TexturedShader.glsl");
 
 		// ---------------------------------------------------------------------
 
@@ -87,6 +43,7 @@ public:
 		m_SquareVAO->SetIndexBuffer(m_SquareIBO);
 	}
 
+
 	void OnUpdate(Candle::Timestep ts) override
 	{
 		Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
@@ -104,10 +61,12 @@ public:
 		Candle::Renderer::EndScene();
 	}
 
+
 	void OnEvent(Candle::Event& event) override
 	{
 		
 	}
+
 
 	virtual void OnImGuiRender()
 	{

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Candle/Core.h"
+#include "Candle/Input/KeyCodes.h"
 
 namespace Candle
 {
