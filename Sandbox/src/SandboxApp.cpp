@@ -17,7 +17,8 @@ public:
 			{ Candle::ShaderDataType::Float2, "a_UV", false}
 		};
 
-		m_Shader = Candle::Shader::Create("assets/shaders/TexturedShader.glsl");
+		m_ShaderLibrary.Load("assets/shaders/TexturedShader.glsl");
+		//m_Shader = Candle::Shader::Create("assets/shaders/TexturedShader.glsl");
 
 		// ---------------------------------------------------------------------
 
@@ -49,13 +50,14 @@ public:
 		Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
 		Candle::RenderCommand::Clear();
 
+		auto shader = m_ShaderLibrary.Get("TexturedShader");
 		Candle::Renderer::BeginScene(m_Camera);
 		{
-			m_Shader->Bind();
-			m_Shader->SetFloat3("u_Color", m_Color);
+			shader->Bind();
+			shader->SetFloat3("u_Color", m_Color);
 			// Temp
 			m_SquareTexture->Bind();
-			Candle::Renderer::Submit(m_Shader, m_SquareVAO);
+			Candle::Renderer::Submit(shader, m_SquareVAO);
 
 		}
 		Candle::Renderer::EndScene();
@@ -78,7 +80,8 @@ public:
 private:
 	//temp
 	glm::vec3 m_Color = { 1.0f, 0.0f, 0.0f };
-	Candle::Ref<Candle::Shader> m_Shader;
+
+	Candle::ShaderLibrary m_ShaderLibrary;
 
 	// -----------------------------------------
 	Candle::Camera m_Camera = Candle::Camera(glm::radians(50.0f), 1200.0f / 720.0f, 0.1f, 1000.0f, glm::translate(glm::mat4(1.0), { 0.0f, 0.0f, 1.0f }));
@@ -88,6 +91,7 @@ private:
 	Candle::Ref<Candle::VertexArray> m_SquareVAO;
 	Candle::Ref<Candle::Texture2D> m_SquareTexture;
 };
+
 
 class Sandbox : public Candle::Application
 {
@@ -105,6 +109,7 @@ public:
 
 private:
 };
+
 
 Candle::Application* Candle::CreateApplication()
 {

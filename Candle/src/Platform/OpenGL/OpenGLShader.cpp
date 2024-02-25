@@ -1,6 +1,7 @@
 #include "cdpch.h"
 #include "OpenGLShader.h"
 
+#include <filesystem>
 #include <fstream>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,20 +24,37 @@ namespace Candle
 	}
 
 
-	OpenGLShader::OpenGLShader(const std::string& filepath)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& filepath)
 	{
+		m_Name = name;
+		
+		// Process
 		std::string file = ReadFile(filepath);
 		std::unordered_map<GLenum, std::string> shaderSources = Preprocess(file);
 		Compile(shaderSources);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& filepath)
+	{
+		// Get the name from the file path
+		std::filesystem::path path (filepath);
+		m_Name = path.stem().string();
+
+		// Process
+		std::string file = ReadFile(filepath);
+		std::unordered_map<GLenum, std::string> shaderSources = Preprocess(file);
+		Compile(shaderSources);
+	}
+
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
 		std::unordered_map<GLenum, std::string> shaderSources;
 		shaderSources[GL_VERTEX_SHADER] = vertexSrc;
 		shaderSources[GL_FRAGMENT_SHADER] = fragmentSrc;
 
 		Compile(shaderSources);
+	
+		m_Name = name;
 	}
 
 	OpenGLShader::~OpenGLShader()
@@ -50,7 +68,6 @@ namespace Candle
 
 
 	// Uniforms
-
 	void OpenGLShader::SetInt(const std::string& name, int value)
 	{
 		GLint location = glGetUniformLocation(m_RendererID, name.c_str());
@@ -94,7 +111,11 @@ namespace Candle
 		glUniformMatrix4fv(location, 1, false, glm::value_ptr(value));
 	}
 
-
+	const std::string& OpenGLShader::GetName() const
+	{
+		return m_Name;
+	}
+	
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
 		std::string result;
@@ -160,11 +181,12 @@ namespace Candle
 
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		CD_CORE_ASSERT(shaderSources.size() <= 2, "We only support atmost 2 shaders for now");
+
 		GLuint program = glCreateProgram();
-
-		std::vector<GLuint> shadersIDs;
-		shadersIDs.reserve(shaderSources.size());
-
+		std::array<GLuint, 2> glShaderIDs;
+		unsigned int glShaderIndex = 0;
+		
 		///From https://www.khronos.org/opengl/wiki/Shader_Compilation
 
 		for (auto& [shaderType, shaderSource] : shaderSources) {
@@ -203,7 +225,7 @@ namespace Candle
 			
 			// Shader is compiled succesfully, we can now attach it to our program
 			glAttachShader(program, shader);
-			shadersIDs.emplace_back(shader);
+			glShaderIDs[glShaderIndex++] = shader;
 		}
 		
 
@@ -226,9 +248,9 @@ namespace Candle
 			glDeleteProgram(program);
 			
 			// Don't leak shaders either.
-			for (auto shaderID : shadersIDs)
+			for (unsigned int i = 0; i < glShaderIndex; i++)
 			{
-				glDeleteShader(shaderID);
+				glDeleteShader(glShaderIDs[i]);
 			}
 
 			// Use the infoLog as you see fit.
@@ -239,9 +261,9 @@ namespace Candle
 
 		// Always detach shaders after a successful link.
 		// Don't leak shaders either.
-		for (auto shaderID : shadersIDs)
+		for (unsigned int i = 0; i < glShaderIndex; i++)
 		{
-			glDetachShader(program, shaderID);
+			glDetachShader(program, glShaderIDs[i]);
 		}
 
 		m_RendererID = program;

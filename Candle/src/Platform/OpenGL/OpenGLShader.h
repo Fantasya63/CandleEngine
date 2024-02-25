@@ -12,11 +12,13 @@ namespace Candle
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+		OpenGLShader(const std::string& name, const std::string& filepath);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
 		~OpenGLShader();
 
 		void Bind() const;
 
+		// Uniforms
 		virtual void SetInt(const std::string& name, int value) override;
 		
 		virtual void SetFloat(const std::string& name, float value) override;
@@ -27,11 +29,14 @@ namespace Candle
 		virtual void SetMat3(const std::string& name, const glm::mat3& value) override;
 		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
 
+		virtual const std::string& GetName() const override;
+
 	private:
 		std::string ReadFile(const std::string& filepath);
 		std::unordered_map<GLenum, std::string> Preprocess(const std::string& source);
 		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);
 	private:
+		std::string m_Name;
 		uint32_t m_RendererID = -1;
 	};
 }
