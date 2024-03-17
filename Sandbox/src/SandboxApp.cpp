@@ -78,6 +78,7 @@ public:
 		ImGui::ColorEdit3("Color", glm::value_ptr(m_Color));
 		ImGui::SliderFloat("Camera Speed", &m_Camera.m_Speed, 0.01f, 10.0f, "%.3f");
 		ImGui::SliderFloat("Mouse Sensitivity", &m_Camera.m_MouseSensitivity, 1.0f, 10.0f, "%.3f");
+
 		ImGui::End();
 	}
 

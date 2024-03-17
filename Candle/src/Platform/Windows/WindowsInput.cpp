@@ -1,14 +1,12 @@
 #include "cdpch.h"
-#include "WindowsInput.h"
 
+#include "Candle/Input/Input.h"
 #include "Candle/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Candle
 {
-	Input* Input::s_Instance = new WindowsInput();
-
-	bool Candle::WindowsInput::IsKeyPressedImpl(int keycode)
+	bool Input::IsKeyPressed(int keycode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetKey(window, keycode);
@@ -16,14 +14,14 @@ namespace Candle
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 
-	bool WindowsInput::IsMouseButtonPressedImpl(int button)
+	bool Input::IsMouseButtonPressed(int button)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		auto state = glfwGetMouseButton(window, button);
 		return state == GLFW_PRESS;
 	}
 
-	glm::vec2 WindowsInput::GetMousePosImpl()
+	glm::vec2 Input::GetMousePos()
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
@@ -32,16 +30,16 @@ namespace Candle
 		return { (float)xpos, (float)ypos };
 	}
 
-	float WindowsInput::GetMouseXImpl()
+	float Input::GetMouseX()
 	{
-		return GetMousePosImpl().x;
+		return GetMousePos().x;
 	}
 
-	float WindowsInput::GetMouseYImpl()
+	float Input::GetMouseY()
 	{
-		return GetMousePosImpl().y;
+		return GetMousePos().y;
 	}
-	void WindowsInput::SetMouseModeImpl(MouseMode mode)
+	void Input::SetMouseMode(MouseMode mode)
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		

@@ -29,8 +29,8 @@ namespace Candle
 		void RecalculateView();
 
 	public:
-		float m_Speed = 10.0f;
-		float m_MouseSensitivity = 3.0f;
+		float m_Speed = 3.5f;
+		float m_MouseSensitivity = 5.0f;
 
 	private:
 		float m_FOV = 45.0f;

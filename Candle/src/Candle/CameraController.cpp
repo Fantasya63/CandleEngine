@@ -18,11 +18,9 @@ Candle::CameraController::CameraController(float fov, float aspect, float zNear,
 	m_Rotation = rot;
 
 	m_Forward = m_Rotation * glm::vec3(0.0f, 0.0f, -1.0f);
-	Input::SetMouseMode(MouseMode::DISABLED);
 }
 
 static glm::vec2 lastMousePos;
-
 
 void Candle::CameraController::Update(const Timestep& ts)
 {
@@ -74,7 +72,7 @@ void Candle::CameraController::Update(const Timestep& ts)
 		m_Position -= glm::vec3(0.0f, 1.0f, 0.0f) * m_Speed * ts.GetSeconds();
 		moved = true;
 	}
-	
+
 
 	// Rotation
 	glm::vec2 mousePos = Input::GetMousePos();
@@ -86,24 +84,22 @@ void Candle::CameraController::Update(const Timestep& ts)
 		
 		float targetPitch = m_Pitch + mouseDelta.y;
 
+		// Clamp Pitch
 		if (targetPitch > 89.5f) {
 			mouseDelta.y = 89.5f - m_Pitch;
 			m_Pitch = 89.5f;
 		}
-		else if (targetPitch < -89.5f) {
-			mouseDelta.y = -89.5f - m_Pitch;
-			m_Pitch = -89.5f;
+		else if (targetPitch < -90.0f) {
+			mouseDelta.y = -90.0f - m_Pitch;
+			m_Pitch = -90.0f;
 		}
 		else {
 			m_Pitch = targetPitch;
 		}
-
-		CD_CORE_TRACE("Pitch: {0}", m_Pitch);
-
-		// Clamp Pitch
 		
-		glm::quat rot = glm::angleAxis(glm::radians(mouseDelta.y), right) * glm::angleAxis(glm::radians(mouseDelta.x), glm::vec3(0.0f, 1.0f, 0.0f));
-		m_Forward = rot * m_Forward;
+		glm::quat pitch = glm::angleAxis(glm::radians(mouseDelta.y), right);
+		glm::quat yaw = glm::angleAxis(glm::radians(mouseDelta.x), glm::vec3(0.0f, 1.0f, 0.0f));
+		m_Rotation = yaw * pitch * m_Rotation;
 		moved = true;
 	}
 
@@ -115,10 +111,9 @@ void Candle::CameraController::Update(const Timestep& ts)
 
 void Candle::CameraController::RecalculateView()
 {
-	//m_Forward = m_Rotation * glm::vec3(0.0f, 0.0f, -1.0f);
+	m_Forward = m_Rotation * glm::vec3(0.0f, 0.0f, -1.0f);
 	m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Forward, glm::vec3(0.0f, 1.0f, 0.0f));
 	m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
-
 }
 
 void Candle::CameraController::OnEvent(Candle::Event& event)
@@ -137,6 +132,7 @@ bool Candle::CameraController::OnWindowResized(WindowResizeEvent& e)
 	CD_CORE_TRACE((float)width / height);
 
 	SetProjection(m_FOV, (float) width / height, m_zNear, m_zFar);
+	m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 
 	return false;
 }
@@ -147,4 +143,3 @@ bool Candle::CameraController::OnMouseScroll(MouseScrolledEvent& e)
 	m_Speed = glm::clamp(m_Speed, 0.1f, 10.0f);
 	return true;
 }
-
