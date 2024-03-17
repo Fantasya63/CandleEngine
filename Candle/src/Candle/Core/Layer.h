@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Candle/Core.h"
+#include "Candle/Core/Base.h"
 #include "Candle/Core/Timestep.h"
 #include <Candle/Events/Event.h>
 

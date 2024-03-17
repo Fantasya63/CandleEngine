@@ -2,6 +2,8 @@
 
 #include "Event.h"
 
+#include <glm/glm.hpp>
+
 namespace Candle {
 
 	class MouseMovedEvent : public Event
@@ -12,6 +14,7 @@ namespace Candle {
 
 		inline float GetX() const { return m_x; }
 		inline float GetY() const { return m_y; }
+		inline glm::vec2 GetXY() const { return { m_x, m_y }; }
 
 		std::string ToString() const override
 		{

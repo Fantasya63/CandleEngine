@@ -8,6 +8,6 @@ namespace Candle
 
 	float PlatformWindows::GetTimeImpl()
 	{
-		return glfwGetTime();
+		return (float)glfwGetTime();
 	}
 }

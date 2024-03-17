@@ -1,5 +1,5 @@
 #pragma once
-#include <Candle/Core.h>
+#include <Candle/Core/Base.h>
 #include <string>
 
 namespace Candle

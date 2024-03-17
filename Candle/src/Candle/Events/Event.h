@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Candle/Core.h"
+#include "Candle/Core/Base.h"
 
 #define EVENT_HANDLED true;
 #define EVENT_PROPAGATE false;
@@ -33,7 +33,7 @@ namespace Candle {
 								virtual const char* GetName() const override { return #type;}
 
 
-#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override {return category;}
+#define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
 	class Event
 	{
@@ -67,15 +67,15 @@ namespace Candle {
 		{
 		}
 
-		template<typename T>
-		bool Dispatch(EventFn<T> func)
+		// F will be deduced by the compiler
+		template<typename T, typename F>
+		bool Dispatch(const F& func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
-				m_Event.m_Handled = func(*(T*)&m_Event);
+				m_Event.m_Handled |= func(static_cast<T&>(m_Event));
 				return true;
 			}
-
 			return false;
 		}
 

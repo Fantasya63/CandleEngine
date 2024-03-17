@@ -12,6 +12,7 @@ namespace Candle
 
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
+
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
@@ -35,6 +36,7 @@ namespace Candle
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
 		//CD_CORE_TRACE("{0}", e);
 
@@ -55,9 +57,12 @@ namespace Candle
 			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack)
+			if (!m_WindowMinimized)
 			{
-				layer->OnUpdate(ts);
+				for (Layer* layer : m_LayerStack)
+				{
+					layer->OnUpdate(ts);
+				}
 			}
 
 			m_ImGuiLayer->Begin();
@@ -65,6 +70,7 @@ namespace Candle
 				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
 
+			
 			m_Window->OnUpdate();
 		}
 	}
@@ -89,5 +95,23 @@ namespace Candle
 		return true;
 	}
 
-	
+	bool Application::OnWindowResize(WindowResizeEvent& e)
+	{
+		uint32_t width, height;
+		width = e.GetWidth();
+		height = e.GetHeight();
+
+		if (width == 0 || height == 0)
+		{
+			m_WindowMinimized = true;
+			return false;
+		}
+
+		m_WindowMinimized = false;
+
+		// Notify the Renderer
+		Renderer::OnWindowResized(width, height);
+
+		return false;
+	}
 }

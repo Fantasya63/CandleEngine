@@ -22,7 +22,8 @@
 	#define CD_CORE_ASSERT(x, ...)
 #endif //  CD_ENABLE_ASSERTS
 
-#define CD_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+// Idk how this works tbh
+#define CD_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 #define BIT(x) (1 << x)
 
 namespace Candle

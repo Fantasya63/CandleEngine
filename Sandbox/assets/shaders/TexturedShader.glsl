@@ -14,7 +14,7 @@
 	{
 		v_UV = a_UV;
 		v_Color = a_Color;
-		gl_Position = u_ViewProjection * u_Model * a_Position;
+		gl_Position = u_ViewProjection * u_Model * vec4(a_Position.xyz, 1.0);
 	}
 
 

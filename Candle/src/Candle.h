@@ -16,7 +16,7 @@
 
 
 // --------Rendering-------------
-
+#include "Candle/CameraController.h"
 #include "Candle/Renderer/Buffer.h"
 #include "Candle/Renderer/Camera.h"
 #include "Candle/Renderer/Shader.h"
@@ -28,4 +28,4 @@
 
 
 //======== Entry Point ==============
-#include "Candle/EntryPoint.h"
+#include "Candle/Core/EntryPoint.h"

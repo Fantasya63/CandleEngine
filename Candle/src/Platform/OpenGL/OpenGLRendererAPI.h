@@ -10,6 +10,7 @@ namespace Candle{
 		virtual void Clear() const override;
 
 		virtual void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
+		virtual void SetViewport(uint32_t minX, uint32_t minY, uint32_t maxX, uint32_t maxY) override;
 
 	};
 }
