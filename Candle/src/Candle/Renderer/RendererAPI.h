@@ -15,6 +15,7 @@ namespace Candle
 		};
 
 	public:
+		virtual void Init() const = 0;
 		virtual void SetClearColor(const glm::vec4& color) const = 0;
 		virtual void Clear() const = 0;
 

@@ -2,6 +2,7 @@
 #include "Camera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include "Camera2D.h"
 
 
 Candle::Camera::Camera(float fov, float aspect, float zNear, float zFar, const glm::mat4& transform)

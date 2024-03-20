@@ -8,6 +8,8 @@ namespace Candle
 	class Renderer 
 	{
 	public:
+		static void Init();
+
 		static void BeginScene(Camera& cam); //TODO, Take in cam, environment, lights, etc
 		static void EndScene();
 		static void OnWindowResized(uint32_t width, uint32_t height);

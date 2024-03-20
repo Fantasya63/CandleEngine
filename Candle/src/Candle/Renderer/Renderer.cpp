@@ -8,6 +8,11 @@ namespace Candle
 	Scope<Renderer::SceneData> Renderer::s_SceneData = CreateScope<Renderer::SceneData>();
 
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(Camera& cam)
 	{
 		s_SceneData->ViewProjectionMatrix = cam.GetViewProjectionMatrix();

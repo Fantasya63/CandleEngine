@@ -2,10 +2,11 @@
 #include "Candle/Renderer/RendererAPI.h"
 #include "Candle/Renderer/RendererAPI.h"
 
-namespace Candle{
+namespace Candle {
 	class OpenGLRendererAPI : public RendererAPI
 	{
 	public:
+		virtual void Init() const override;
 		virtual void SetClearColor(const glm::vec4& color) const override;
 		virtual void Clear() const override;
 

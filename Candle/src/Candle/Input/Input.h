@@ -15,7 +15,7 @@ namespace Candle
 	class Input
 	{
 	public:
-		static bool IsKeyPressed(int keycode);
+		static bool IsKeyPressed(Keycode key);
 		
 		static bool IsMouseButtonPressed(int button);
 		static float GetMouseX();

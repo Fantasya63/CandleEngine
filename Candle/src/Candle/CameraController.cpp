@@ -39,12 +39,12 @@ void Candle::CameraController::Update(const Timestep& ts)
 	glm::vec3 direction = { 0.0f, 0.0f, 0.0f };
 
 	// Forward Backward
-	if (Input::IsKeyPressed(CD_KEY_W))
+	if (Input::IsKeyPressed(Keycode::W))
 	{
 		m_Position += m_Forward * m_Speed * ts.GetSeconds();
 		moved = true;
 	}
-	else if (Input::IsKeyPressed(CD_KEY_S))
+	else if (Input::IsKeyPressed(Keycode::S))
 	{
 		m_Position -= m_Forward * m_Speed * ts.GetSeconds();
 		moved = true;
@@ -52,23 +52,23 @@ void Candle::CameraController::Update(const Timestep& ts)
 
 
 	// Left and Right
-	if (Input::IsKeyPressed(CD_KEY_A))
+	if (Input::IsKeyPressed(Keycode::A))
 	{
 		m_Position -= right * m_Speed * ts.GetSeconds();
 		moved = true;
 	}
-	else if (Input::IsKeyPressed(CD_KEY_D))
+	else if (Input::IsKeyPressed(Keycode::D))
 	{
 		m_Position += right * m_Speed * ts.GetSeconds();
 		moved = true;
 	}
 
 	// Up and down
-	if (Input::IsKeyPressed(CD_KEY_E)) {
+	if (Input::IsKeyPressed(Keycode::E)) {
 		m_Position += glm::vec3(0.0f, 1.0f, 0.0f) * m_Speed * ts.GetSeconds();
 		moved = true;
 	}
-	else if (Input::IsKeyPressed(CD_KEY_Q)) {
+	else if (Input::IsKeyPressed(Keycode::Q)) {
 		m_Position -= glm::vec3(0.0f, 1.0f, 0.0f) * m_Speed * ts.GetSeconds();
 		moved = true;
 	}

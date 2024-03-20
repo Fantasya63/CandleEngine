@@ -5,6 +5,10 @@
 
 namespace Candle
 {
+	void OpenGLRendererAPI::Init() const
+	{
+
+	}
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color) const
 	{
 		glClearColor(color.r, color.g, color.b, color.a);
