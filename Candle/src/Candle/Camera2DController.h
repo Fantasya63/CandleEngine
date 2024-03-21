@@ -9,12 +9,14 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
+// TODO: Change to composition instead of inheritance?
+
 namespace Candle
 {
 	class Camera2DController : public Camera2D
 	{
 	public:
-		Camera2DController(float left, float right, float bottom, float top);
+		Camera2DController(float aspect, const glm::vec3& pos = glm::vec3(0.0f, 0.0f, 0.0f), float zoom = 1.0f);
 		void Update(const Timestep& ts);
 		void OnEvent(Candle::Event& event);
 
@@ -25,6 +27,11 @@ namespace Candle
 	public:
 		float m_Speed = 3.5f;
 		float m_RotationSpeed = 5.0f;
+		float m_Zoom;
+
+	private:
+		glm::vec3 m_CameraPosition = { 0.0f, 0.0f, 0.0f };
+		float m_Aspect;
 	};
 }
 

@@ -1,8 +1,10 @@
 #include <Candle.h>
-#include "glm/glm.hpp"
 
+#include "Sandbox2D.h"
+
+#include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "imgui.h"
+#include <imgui.h>
 
 class ExampleLayer : public Candle::Layer
 {
@@ -103,8 +105,8 @@ class Sandbox : public Candle::Application
 public:
 	Sandbox()
 	{
-		ExampleLayer* layer = new ExampleLayer();
-		PushLayer(layer);
+		//ExampleLayer* layer = new ExampleLayer();
+		PushLayer(new Sandbox2D());
 
 	}
 	~Sandbox()
@@ -120,3 +122,5 @@ Candle::Application* Candle::CreateApplication()
 {
 	return new Sandbox();
 }
+
+#include "Candle/Core/EntryPoint.h"

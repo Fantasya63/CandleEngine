@@ -9,6 +9,8 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
 
+// TODO: Change to composition instead of inheritance?
+
 namespace Candle
 {
 	class CameraController : public Camera
@@ -42,7 +44,6 @@ namespace Candle
 		glm::vec3 m_Position = { 0.0f, 0.0f, 0.0f };
 		glm::vec3 m_Forward;
 
-		// TODO: Change to quaternion
 		glm::quat m_Rotation;
 	};
 }

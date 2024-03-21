@@ -17,15 +17,14 @@
 
 // --------Rendering-------------
 #include "Candle/CameraController.h"
+#include "Candle/Camera2DController.h"
 #include "Candle/Renderer/Buffer.h"
 #include "Candle/Renderer/Camera.h"
+#include "Candle/Renderer/Camera2D.h"
 #include "Candle/Renderer/Shader.h"
 #include "Candle/Renderer/Texture.h"
 #include "Candle/Renderer/VertexArray.h"
 
 #include "Candle/Renderer/Renderer.h"
+#include "Candle/Renderer/Renderer2D.h"
 #include "Candle/Renderer/RenderCommand.h"
-
-
-//======== Entry Point ==============
-#include "Candle/Core/EntryPoint.h"

@@ -3,6 +3,7 @@
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox 2D")
 {
+
 	Candle::BufferLayout layout = {
 		{ Candle::ShaderDataType::Float3, "a_Position", false },
 		{ Candle::ShaderDataType::Float3, "a_Color", false },
@@ -10,7 +11,10 @@ Sandbox2D::Sandbox2D()
 	};
 
 	m_ShaderLibrary.Load("assets/shaders/TexturedShader.glsl");
-	
+	//m_Shader = Candle::Shader::Create("assets/shaders/TexturedShader.glsl");
+
+	// ---------------------------------------------------------------------
+
 	float squareVerts[] = {
 		-0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 		 0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
@@ -35,12 +39,28 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnUpdate(Candle::Timestep ts)
 {
-}
+	Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
+	Candle::RenderCommand::Clear();
 
-void Sandbox2D::OnEvent(Candle::Event& e)
-{
+	m_Camera2D.Update(ts);
+
+	auto shader = m_ShaderLibrary.Get("TexturedShader");
+	Candle::Renderer2D::BeginScene(m_Camera2D);
+	{
+		shader->Bind();
+		shader->SetFloat3("u_Color", m_Color);
+		// Temp
+		m_SquareTexture->Bind();
+		Candle::Renderer2D::Submit(shader, m_SquareVAO);
+
+	}
+	Candle::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
 {
+	ImGui::Begin("Test");
+	ImGui::ColorEdit3("Color", glm::value_ptr(m_Color));
+
+	ImGui::End();
 }
