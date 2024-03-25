@@ -1,5 +1,6 @@
 #include "cdpch.h"
 #include "Renderer.h"
+#include "Renderer2D.h"
 
 #include "Camera.h"
 
@@ -11,6 +12,12 @@ namespace Candle
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::BeginScene(Camera& cam)

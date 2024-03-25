@@ -9,6 +9,7 @@ namespace Candle
 	{
 	public:
 		static void Init();
+		static void Shutdown();
 
 		static void BeginScene(Camera& cam); //TODO, Take in cam, environment, lights, etc
 		static void EndScene();

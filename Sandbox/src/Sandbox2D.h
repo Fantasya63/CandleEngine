@@ -23,16 +23,13 @@ public:
 
 private:
 	//temp
-	glm::vec3 m_Color = { 1.0f, 0.0f, 0.0f };
-
-	Candle::ShaderLibrary m_ShaderLibrary;
-
-	// -----------------------------------------
-	//Candle::CameraController m_Camera = Candle::CameraController(glm::radians(50.0f), 1200.0f / 720.0f, 0.1f, 1000.0f, { 0.0f, 0.0f, 1.0f });
+	glm::vec4 m_Color = { 1.0f, 0.0f, 0.0f, 1.0f };
+	
 	Candle::Camera2DController m_Camera2D = Candle::Camera2DController((1200.0f / 720.0f));
 
-	Candle::Ref<Candle::VertexBuffer> m_SquareVBO;
-	Candle::Ref<Candle::IndexBuffer> m_SquareIBO;
-	Candle::Ref<Candle::VertexArray> m_SquareVAO;
 	Candle::Ref<Candle::Texture2D> m_SquareTexture;
+	float m_RotationSpeed = 1.0f;
+
+	float m_Rotation = 0.0f;
+	glm::vec2 m_TextureTiling = { 1.0f, 1.0f };
 };
