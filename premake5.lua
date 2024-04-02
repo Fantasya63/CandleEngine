@@ -1,4 +1,4 @@
- workspace "Candle"
+workspace "Candle"
 	architecture "x64"
 	startproject "Sandbox"
 	
@@ -19,6 +19,7 @@ IncludeDir["imgui"] = "Candle/vendor/imgui"
 IncludeDir["glm"] = "Candle/vendor/glm"
 IncludeDir["entt"] = "Candle/vendor/entt/include"
 IncludeDir["stb"] = "Candle/vendor/stb"
+IncludeDir["assimp"] = "Candle/vendor/assimp/include"
 
 group "Dependencies"
 	include "Candle/vendor/GLFW"
@@ -65,6 +66,7 @@ project "Candle"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.stb}",
+		"%{IncludeDir.assimp}",
 	}
 
 	links
@@ -83,6 +85,11 @@ project "Candle"
 			"CD_PLATFORM_WINDOWS",
 			"CD_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
+		}
+
+		links
+		{
+			"Candle/vendor/assimp/bin/assimp.dll"
 		}
 
 	filter "configurations:Debug"
