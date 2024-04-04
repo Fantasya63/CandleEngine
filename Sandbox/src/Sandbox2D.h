@@ -23,7 +23,7 @@ public:
 
 private:
 	//temp
-	glm::vec4 m_Color = { 1.0f, 0.0f, 0.0f, 1.0f };
+	glm::vec4 m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
 	
 	Candle::Camera2DController m_Camera2D = Candle::Camera2DController((1200.0f / 720.0f));
 
