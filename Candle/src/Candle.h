@@ -28,3 +28,6 @@
 #include "Candle/Renderer/Renderer.h"
 #include "Candle/Renderer/Renderer2D.h"
 #include "Candle/Renderer/RenderCommand.h"
+
+// ------- Platform -------------------
+//#include "Candle/Core/Platform.h"

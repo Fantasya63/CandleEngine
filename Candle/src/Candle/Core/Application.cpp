@@ -16,6 +16,8 @@ namespace Candle
 
 	Application::Application()
 	{
+		CD_PROFILE_FUNCTION();
+
 		CD_CORE_ASSERT(!s_Instance, "Application already exist!");
 		s_Instance = this;
 
@@ -30,11 +32,15 @@ namespace Candle
 
 	Application::~Application()
 	{
+		CD_PROFILE_FUNCTION();
+
 		Renderer::Shutdown();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -49,10 +55,11 @@ namespace Candle
 
 	void Application::Run()
 	{
+		CD_PROFILE_FUNCTION();
 
 		while (m_Running)
 		{
-			float time = Platform::GetTime();
+			float time = Time::GetTime();
 			Timestep ts = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
@@ -96,6 +103,8 @@ namespace Candle
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		CD_PROFILE_FUNCTION();
+
 		uint32_t width, height;
 		width = e.GetWidth();
 		height = e.GetHeight();

@@ -7,6 +7,7 @@ namespace Candle
 {
 	Ref<Shader> Candle::Shader::Create(const std::string& filepath)
 	{
+
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:
@@ -23,6 +24,7 @@ namespace Candle
 
 	Ref<Shader> Candle::Shader::Create(const std::string& name, const std::string& filepath)
 	{
+
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
@@ -39,6 +41,7 @@ namespace Candle
 
 	Ref<Shader> Candle::Shader::Create(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
+
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:

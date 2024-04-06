@@ -2,7 +2,7 @@
 
 namespace Candle
 {
-	class Platform
+	class Time
 	{
 	public:
 		static float GetTime();

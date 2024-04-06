@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Candle/Core/Log.h"
+#include "Candle/Debug/Instrumentor.h"
 
 #ifdef CD_PLATFORM_WINDOWS
 	#include <Windows.h>

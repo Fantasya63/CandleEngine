@@ -11,12 +11,16 @@ namespace Candle
 
 	void Renderer::Init()
 	{
+		CD_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
 
 	void Renderer::Shutdown()
 	{
+		CD_PROFILE_FUNCTION();
+
 		Renderer2D::Shutdown();
 	}
 

@@ -1,6 +1,8 @@
 #include "cdpch.h"
 #include "Renderer2D.h"
 
+#include "Candle/Core/Platform.h"
+
 #include "Candle/Renderer/Camera.h"
 #include "Candle/Renderer/Shader.h"
 #include "Candle/Renderer/Texture.h"
@@ -21,6 +23,8 @@ namespace Candle
 
 	void Renderer2D::Init()
 	{
+		CD_PROFILE_FUNCTION();
+
 		s_Renderer2DData = new RendererData();
 		s_Renderer2DData->WhiteTexture = Texture2D::Create(1, 1);
 		uint32_t whiteTextureData = 0xffffffff;
@@ -62,6 +66,7 @@ namespace Candle
 
 	void Renderer2D::Shutdown()
 	{
+		CD_PROFILE_FUNCTION();
 		delete s_Renderer2DData;
 	}
 
@@ -91,6 +96,7 @@ namespace Candle
 
 		s_Renderer2DData->SimpleShader2D->SetFloat2("u_TilingFactor", tiling);
 		s_Renderer2DData->SimpleShader2D->SetFloat4("u_TintColor", tintColor);
+		s_Renderer2DData->SimpleShader2D->SetFloat("u_Time", Time::GetTime());
 
 		s_Renderer2DData->QuadVAO->Bind();
 		RenderCommand::DrawIndexed(s_Renderer2DData->QuadVAO);

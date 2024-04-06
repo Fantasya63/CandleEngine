@@ -5,7 +5,7 @@
 
 namespace Candle
 {
-	float Platform::GetTime()
+	float Time::GetTime()
 	{
 		return (float)glfwGetTime();
 	}
