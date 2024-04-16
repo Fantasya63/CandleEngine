@@ -17,6 +17,7 @@ namespace Candle {
 		void OnEvent(Event& e);
 
 		void Run();
+		void Close() { m_Running = false; }
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
