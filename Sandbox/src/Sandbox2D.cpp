@@ -27,9 +27,13 @@ void Sandbox2D::OnUpdate(Candle::Timestep ts)
 
 void Sandbox2D::OnImGuiRender()
 {
-	ImGui::Begin("Test");
-	ImGui::ColorEdit4("Color", glm::value_ptr(m_Color));
-	ImGui::SliderFloat("Rotation Speed", &m_RotationSpeed, 0.0f, 360.0f);
-	ImGui::InputFloat2("Tiling Input", glm::value_ptr(m_TextureTiling), "%.1f");
-	ImGui::End();
+    ImGui::Begin("Test");
+    ImGui::ColorEdit4("Color", glm::value_ptr(m_Color));
+    ImGui::SliderFloat("Rotation Speed", &m_RotationSpeed, 0.0f, 360.0f);
+    ImGui::InputFloat2("Tiling Input", glm::value_ptr(m_TextureTiling), "%.1f");
+    
+    uint32_t textureID = m_SquareTexture->GetRendererID();
+    ImGui::Image((void*)textureID, ImVec2(256.0f, 256.0f));
+
+    ImGui::End();
 }

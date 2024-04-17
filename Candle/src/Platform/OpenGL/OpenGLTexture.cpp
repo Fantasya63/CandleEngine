@@ -88,6 +88,11 @@ namespace Candle
 		return m_Height;
 	}
 
+	uint32_t OpenGLTexture2D::GetRendererID() const
+	{
+		return m_RendererID;
+	}
+
 	void OpenGLTexture2D::Bind(uint32_t slot) const
 	{
 		glBindTextureUnit(slot, m_RendererID);

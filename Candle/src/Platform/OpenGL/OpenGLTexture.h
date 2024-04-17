@@ -15,6 +15,7 @@ namespace Candle
 
 		virtual uint32_t GetWidth() const override;
 		virtual uint32_t GetHeight() const override;
+		virtual uint32_t GetRendererID() const override;
 		virtual void Bind(uint32_t slot) const override;
 
 		virtual void SetData(void* data, uint32_t size) override;

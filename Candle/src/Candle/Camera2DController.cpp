@@ -38,12 +38,16 @@ void Candle::Camera2DController::OnEvent(Candle::Event& event)
 	dispatcher.Dispatch<MouseScrolledEvent>(CD_BIND_EVENT_FN(OnMouseScroll));
 }
 
+void Candle::Camera2DController::ResizeBounds(float width, float height)
+{
+	m_Aspect = width / height;
+	SetProjection(-m_Aspect * m_Zoom, m_Aspect * m_Zoom, -m_Zoom, m_Zoom);
+}
+
 
 bool Candle::Camera2DController::OnWindowResized(WindowResizeEvent& e)
 {
-	m_Aspect = (float)e.GetWidth() / e.GetHeight();
-	SetProjection(-m_Aspect * m_Zoom, m_Aspect * m_Zoom, -m_Zoom, m_Zoom);
-
+	ResizeBounds(e.GetWidth(), e.GetHeight());
 
 	return false;
 }

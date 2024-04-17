@@ -20,6 +20,8 @@ namespace Candle
 		void Update(const Timestep& ts);
 		void OnEvent(Candle::Event& event);
 
+		void ResizeBounds(float width, float height);
+
 	private:
 		bool OnWindowResized(WindowResizeEvent& e);
 		bool OnMouseScroll(MouseScrolledEvent& e);

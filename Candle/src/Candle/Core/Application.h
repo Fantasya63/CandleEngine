@@ -11,12 +11,13 @@ namespace Candle {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Candle App");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
 
 		void Run();
+		void Close() { m_Running = false; }
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* overlay);
