@@ -19,6 +19,15 @@ namespace Candle {
 
     void EditorLayer::OnUpdate(Timestep ts)
     {
+        // Viewport
+        if (m_ViewportPanelResized)
+        {
+            m_Framebuffer->Resize((uint32_t)m_LastViewportPanelSize.x, (uint32_t)m_LastViewportPanelSize.y);
+            m_Camera2D.ResizeBounds(m_LastViewportPanelSize.x, m_LastViewportPanelSize.y);
+
+            m_ViewportPanelResized = false;
+        }
+
         // Update
         m_Camera2D.Update(ts);
 
@@ -146,15 +155,31 @@ namespace Candle {
         }
 
 
-        ImGui::Begin("Test");
+        ImGui::Begin("Settings");
         ImGui::ColorEdit4("Color", glm::value_ptr(m_Color));
         ImGui::SliderFloat("Rotation Speed", &m_RotationSpeed, 0.0f, 360.0f);
         ImGui::InputFloat2("Tiling Input", glm::value_ptr(m_TextureTiling), "%.1f");
+        ImGui::End();
+
+        // Viewport
+        ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+        ImGui::Begin("Scene Viewport");
+        
+        // Get Viewport size
+        ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+        
+        // Check if we have resized the viewport
+        if (m_LastViewportPanelSize != *(glm::vec2*)&viewportPanelSize)
+        {
+            m_ViewportPanelResized = true;
+            m_LastViewportPanelSize = { viewportPanelSize.x, viewportPanelSize.y };
+        }
 
         uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(0);
-        ImGui::Image((void*)textureID, ImVec2(1280.0f, 720.0f), ImVec2(0, 1), ImVec2(1, 0));
-
+        ImGui::Image((void*)textureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));
+        
         ImGui::End();
+        ImGui::PopStyleVar();
 
         ImGui::End();
     }

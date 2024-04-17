@@ -24,10 +24,14 @@ namespace Candle {
 		virtual void OnImGuiRender() override;
 
 	private:
+		// Temp
+		bool m_ViewportPanelResized = false;
+		glm::vec2 m_LastViewportPanelSize = { 0.0f, 0.0f };
+
 		//temp
 		glm::vec4 m_Color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
-		Camera2DController m_Camera2D = Camera2DController((1200.0f / 720.0f));
+		Camera2DController m_Camera2D = Camera2DController((1280.0f / 720.0f));
 
 		Ref<Texture2D> m_SquareTexture;
 		float m_RotationSpeed = 1.0f;
