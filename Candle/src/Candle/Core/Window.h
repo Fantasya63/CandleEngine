@@ -14,7 +14,7 @@ namespace Candle {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Candle Engine",
-			unsigned int width = 1200,
+			unsigned int width = 1280,
 			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)
 		{
@@ -41,7 +41,7 @@ namespace Candle {
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
-		static Window* Create(const WindowProps& props = WindowProps());
+		static Scope<Window> Create(const WindowProps& props = WindowProps());
 	};
 
 }

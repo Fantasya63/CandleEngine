@@ -103,6 +103,60 @@ project "Candle"
 		optimize "on"
 
 
+project "Candlelight"
+	location "Candlelight"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+	}
+
+	includedirs
+	{
+		"Candle/vendor/spdlog/include",
+		"Candle/src",
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.imgui}",
+	}
+
+	links
+	{
+		"Candle"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"CD_PLATFORM_WINDOWS",
+		}
+
+	filter "configurations:Debug"
+		defines "CD_DEBUG"
+		symbols "on"
+
+
+	filter "configurations:Release"
+		defines "CD_RELEASE"
+		optimize "on"
+
+
+	filter "configurations:Dist"
+		defines "CD_DIST"
+		optimize "on"
+		symbols "off"
+
+
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"

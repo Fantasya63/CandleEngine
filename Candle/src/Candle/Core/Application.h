@@ -11,7 +11,7 @@ namespace Candle {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Candle App");
 		virtual ~Application();
 
 		void OnEvent(Event& e);
