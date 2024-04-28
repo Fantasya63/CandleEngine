@@ -65,11 +65,15 @@ namespace Candle
         ImGui::DestroyContext();
 	}
 
-   /* void ImGuiLayer::OnImGuiRender()
+    void ImGuiLayer::OnEvent(Event& e)
     {
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
-    }*/
+        if (!m_AllowEvents)
+        {
+            ImGuiIO& io = ImGui::GetIO();
+            e.m_Handled |= e.IsInCategory(EventCategoryMouse) & io.WantCaptureMouse;
+            e.m_Handled |= e.IsInCategory(EventCategoryKeyboard) & io.WantCaptureKeyboard;
+        }
+    }
 
     void ImGuiLayer::Begin()
     {

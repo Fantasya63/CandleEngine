@@ -29,7 +29,12 @@ namespace Candle {
         }
 
         // Update
-        m_Camera2D.Update(ts);
+        
+        if (m_ViewportFocused)
+        {
+            m_Camera2D.Update(ts);
+        }
+        
 
         m_Rotation += glm::radians(m_RotationSpeed) * ts.GetSeconds();
 
@@ -165,6 +170,12 @@ namespace Candle {
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
         ImGui::Begin("Scene Viewport");
         
+
+        m_ViewportFocused = ImGui::IsWindowFocused();
+        m_ViewportHovered = ImGui::IsWindowHovered();
+        Application::Get().GetImGuiLayer()->AllowEvents(m_ViewportHovered);
+
+
         // Get Viewport size
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
         

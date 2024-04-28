@@ -39,6 +39,9 @@ namespace Candle {
 		float m_Rotation = 0.0f;
 		glm::vec2 m_TextureTiling = { 1.0f, 1.0f };
 
+		
+		bool m_ViewportFocused = false, m_ViewportHovered = false;
+		
 		Ref<Framebuffer> m_Framebuffer;
 	};
 

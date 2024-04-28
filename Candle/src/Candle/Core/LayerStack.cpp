@@ -11,6 +11,7 @@ namespace Candle
 	{
 		for (Layer* layer : m_Layers)
 		{
+			layer->OnDetach();
 			delete layer;
 		}
 	}
@@ -33,6 +34,7 @@ namespace Candle
 
 		if (it != m_Layers.end())
 		{
+			layer->OnDetach();
 			m_Layers.erase(it);
 			m_LayerInsertIndex--;
 		}
@@ -44,6 +46,7 @@ namespace Candle
 
 		if (it != m_Layers.end())
 		{
+			overlay->OnDetach();
 			m_Layers.erase(it);
 		}
 	}
