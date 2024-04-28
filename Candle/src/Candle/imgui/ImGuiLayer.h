@@ -17,10 +17,15 @@ namespace Candle
 
         virtual void OnAttach() override;
         virtual void OnDetach() override;
+        virtual void OnEvent(Event& e) override;
 
         void Begin();
         void End();
+
+        void AllowEvents(bool value) { m_AllowEvents = value; }
     private:
+        bool m_AllowEvents = false;
+
         float m_Time = 0.0f;
     };
 }
