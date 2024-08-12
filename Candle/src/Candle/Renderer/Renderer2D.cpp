@@ -11,21 +11,21 @@
 
 namespace Candle
 {
-	struct RendererData
+	struct Renderer2DData
 	{
-		Candle::Ref<Candle::VertexArray> QuadVAO;
-		Candle::Ref<Candle::Shader> SimpleShader2D;
-		Candle::Ref<Candle::Texture2D> WhiteTexture;
+		Ref<VertexArray> QuadVAO;
+		Ref<Shader> SimpleShader2D;
+		Ref<Texture2D> WhiteTexture;
 	};
 
-	static RendererData* s_Renderer2DData;
+	static Renderer2DData* s_Renderer2DData;
 
 
 	void Renderer2D::Init()
 	{
 		CD_PROFILE_FUNCTION();
 
-		s_Renderer2DData = new RendererData();
+		s_Renderer2DData = new Renderer2DData();
 		s_Renderer2DData->WhiteTexture = Texture2D::Create(1, 1);
 		uint32_t whiteTextureData = 0xffffffff;
 		s_Renderer2DData->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));

@@ -1,5 +1,8 @@
 #pragma once
+#include "Candle/Core/Timestep.h"
 #include "Candle/Core/UUID.h"
+#include "Candle/Renderer/EditorCamera.h"
+
 #include "entt.hpp"
 
 namespace Candle
@@ -19,6 +22,9 @@ namespace Candle
 		Entity GetEntityByName(std::string_view name);
 		Entity GetEntityByUUID(UUID uuid);
 
+		void OnUpdate(Timestep ts);
+		void EditorRender(EditorCamera& editorCam);
+
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);
@@ -26,6 +32,9 @@ namespace Candle
 	private:
 		entt::registry m_Registry;
 		std::unordered_map<UUID, entt::entity> m_EntityMap;
+
+		// TODO: Refactor this
+		UUID m_MainCameraEntityUUID;
 
 		friend class Entity;
 	};

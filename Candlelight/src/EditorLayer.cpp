@@ -15,6 +15,10 @@ namespace Candle {
         };
 
         m_Framebuffer = Framebuffer::Create(framebufferSpec);
+
+        m_ActiveScene = CreateRef<Scene>();
+
+        m_EditorCamera.SetPerspectiveVerticalFOV(1280.0f / 720.0f);
     }
 
     void EditorLayer::OnUpdate(Timestep ts)
@@ -23,7 +27,7 @@ namespace Candle {
         if (m_ViewportPanelResized)
         {
             m_Framebuffer->Resize((uint32_t)m_LastViewportPanelSize.x, (uint32_t)m_LastViewportPanelSize.y);
-            m_Camera2D.ResizeBounds(m_LastViewportPanelSize.x, m_LastViewportPanelSize.y);
+            // m_Camera2D.ResizeBounds(m_LastViewportPanelSize.x, m_LastViewportPanelSize.y);
 
             m_ViewportPanelResized = false;
         }
@@ -32,32 +36,23 @@ namespace Candle {
         
         if (m_ViewportFocused)
         {
-            m_Camera2D.Update(ts);
+            m_EditorCamera.OnUpdate(ts);
         }
+
+        m_ActiveScene->OnUpdate(ts);
         
-
-        m_Rotation += glm::radians(m_RotationSpeed) * ts.GetSeconds();
-
+        
         // Renderer
         {
             CD_PROFILE_SCOPE("Renderer Prep");
             
             m_Framebuffer->Bind();
 
-            RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
+            RenderCommand::SetClearColor(glm::vec4(1.0f, 0.2f, 0.2f, 1.0f));
             RenderCommand::Clear();
         }
 
-        Renderer2D::BeginScene(m_Camera2D);
-        {
-            Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, m_Color);
-            Renderer2D::DrawQuad({ 0.0f, 1.0f }, { 1.0f, 1.0f }, m_SquareTexture, m_TextureTiling, m_Color);
-            Renderer2D::DrawRotatedQuad({ 2.0f, 0.0f }, { 1.0f, 1.0f }, m_Rotation, m_Color);
-            Renderer2D::DrawRotatedQuad({ 2.0f, 1.0f }, { 1.0f, 1.0f }, -m_Rotation, m_SquareTexture, m_TextureTiling, m_Color);
-        
-           
-        }
-        Renderer2D::EndScene();
+        m_ActiveScene->EditorRender(m_EditorCamera);
         m_Framebuffer->Unbind();
     }
 
@@ -160,11 +155,11 @@ namespace Candle {
         }
 
 
-        ImGui::Begin("Settings");
+       /* ImGui::Begin("Settings");
         ImGui::ColorEdit4("Color", glm::value_ptr(m_Color));
         ImGui::SliderFloat("Rotation Speed", &m_RotationSpeed, 0.0f, 360.0f);
         ImGui::InputFloat2("Tiling Input", glm::value_ptr(m_TextureTiling), "%.1f");
-        ImGui::End();
+        ImGui::End();*/
 
         // Viewport
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
@@ -184,7 +179,9 @@ namespace Candle {
         {
             m_ViewportPanelResized = true;
             m_LastViewportPanelSize = { viewportPanelSize.x, viewportPanelSize.y };
+            m_EditorCamera.SetViewportSize((uint32_t)m_LastViewportPanelSize.x, (uint32_t)m_LastViewportPanelSize.y);
         }
+
 
         uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(0);
         ImGui::Image((void*)textureID, viewportPanelSize, ImVec2(0, 1), ImVec2(1, 0));

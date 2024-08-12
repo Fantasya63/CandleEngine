@@ -7,16 +7,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/norm.hpp>
 
-Candle::CameraController::CameraController(float fov, float aspect, float zNear, float zFar, const glm::vec3& pos, glm::quat& rot)
-	: Camera(fov, aspect, zNear, zFar, glm::translate(glm::mat4(1), pos))
+Candle::CameraController::CameraController(const glm::vec3& pos, glm::quat& rot)
 {
-	m_FOV = fov;
-	m_Aspect = aspect;
-	m_zNear = zNear;
-	m_zFar = zFar;
 	m_Position = pos;
 	m_Rotation = rot;
-
 	m_Forward = m_Rotation * glm::vec3(0.0f, 0.0f, -1.0f);
 }
 
@@ -112,8 +106,6 @@ void Candle::CameraController::Update(const Timestep& ts)
 void Candle::CameraController::RecalculateView()
 {
 	m_Forward = m_Rotation * glm::vec3(0.0f, 0.0f, -1.0f);
-	m_ViewMatrix = glm::lookAt(m_Position, m_Position + m_Forward, glm::vec3(0.0f, 1.0f, 0.0f));
-	m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
 }
 
 void Candle::CameraController::OnEvent(Candle::Event& event)
@@ -123,6 +115,7 @@ void Candle::CameraController::OnEvent(Candle::Event& event)
 	dispatcher.Dispatch<MouseScrolledEvent>(CD_BIND_EVENT_FN(CameraController::OnMouseScroll));
 }
 
+
 bool Candle::CameraController::OnWindowResized(WindowResizeEvent& e)
 {
 	uint32_t width, height;
@@ -131,9 +124,7 @@ bool Candle::CameraController::OnWindowResized(WindowResizeEvent& e)
 
 	CD_CORE_TRACE((float)width / height);
 
-	SetProjection(m_FOV, (float) width / height, m_zNear, m_zFar);
-	m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix;
-
+	SetViewportSize(width, height);
 	return false;
 }
 

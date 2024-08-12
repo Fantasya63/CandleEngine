@@ -1,5 +1,7 @@
 #pragma once
 #include "Candle/Core/UUID.h"
+#include "Candle/Renderer/Texture.h"
+#include "Candle/Scene/SceneCamera.h"
 
 #include <string>
 
@@ -11,7 +13,6 @@
 
 namespace Candle
 {
-
 	struct IDComponent
 	{
 		UUID ID;
@@ -33,13 +34,10 @@ namespace Candle
 
 	struct CameraComponent
 	{
-		float FOV = 45.0f;
-		float m_NearClip = 0.01f;
-		float m_FarClip = 160.0f;
+		SceneCamera Camera;
 
 		CameraComponent() = default;
-		CameraComponent(float fov)
-			: FOV(fov) {}
+		CameraComponent(const CameraComponent&) = default;
 	};
 
 	struct TransformComponent
@@ -62,4 +60,31 @@ namespace Candle
 				* glm::scale(glm::mat4(1.0f), Scale);
 		}
 	};
+
+	struct SpriteRendererComponent
+	{
+		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+		Ref<Texture2D> Texture;
+		float TilingFactor = 1.0f;
+
+		SpriteRendererComponent() = default;
+		SpriteRendererComponent(const SpriteRendererComponent&) = default;
+		SpriteRendererComponent(const glm::vec4& color)
+			: Color(color) {}
+	};
+
+	struct MeshComponent
+	{
+
+	};
+
+	struct StaticMeshComponent {
+
+	};
+
+	struct MeshRendererComponent
+	{
+
+	};
+
 }

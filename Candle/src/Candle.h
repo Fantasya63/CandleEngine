@@ -30,6 +30,8 @@
 #include "Candle/Renderer/Renderer2D.h"
 #include "Candle/Renderer/RenderCommand.h"
 
+#include "Candle/Scene/Scene.h"
+
 
 // ------- Platform -------------------
 //#include "Candle/Core/Platform.h"
