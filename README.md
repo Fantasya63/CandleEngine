@@ -1,2 +1,2 @@
 # Candle
-Candle Engine a personal project to learn game engine development.
+Candle Engine a 3D game engine created to learn game engine development 
