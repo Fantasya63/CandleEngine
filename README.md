@@ -16,4 +16,4 @@ or by running the GenerateProjects.bat batch file
 
 ---
 # Opening the project
-Double click the Candle.sln to open the sulotion file and press run to run the program.
+Double click the Candle.sln to open the solution file and press run to run the program.
