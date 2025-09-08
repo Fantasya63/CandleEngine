@@ -10,3 +10,6 @@
 [submodule "Candle/vendor/GLFW"]
 	path = Candle/vendor/GLFW
 	url = https://github.com/Fantasya63/glfw.git
+[submodule "Candle/vendor/assimp"]
+	path = Candle/vendor/assimp
+	url = https://github.com/Fantasya63/assimp-premake.git
