@@ -19,6 +19,7 @@ IncludeDir["imgui"] = "Candle/vendor/imgui"
 IncludeDir["glm"] = "Candle/vendor/glm"
 IncludeDir["entt"] = "Candle/vendor/entt/include"
 IncludeDir["stb"] = "Candle/vendor/stb"
+IncludeDir["assimp"] = "Candle/vendor/assimp/include"
 
 group "Dependencies"
 	include "Candle/vendor/GLFW"
@@ -55,6 +56,10 @@ project "Candle"
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
+	libdirs {
+		"Candle/vendor/assimp/lib"
+	}
+
 	includedirs
 	{
 		"%{prj.name}/src",
@@ -65,6 +70,7 @@ project "Candle"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.stb}",
+		"%{IncludeDir.assimp}"
 	}
 
 	links
@@ -73,6 +79,7 @@ project "Candle"
 		"Glad",
 		"imgui",
 		"opengl32.lib",
+		"assimp",
 	}
 
 	filter "system:windows"
