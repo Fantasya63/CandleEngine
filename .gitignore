@@ -47,3 +47,8 @@ Intermediates/
 
 #Imgui
 imgui.ini
+
+# Codelie
+**.project
+**.workspace
+
