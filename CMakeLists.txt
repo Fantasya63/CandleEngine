@@ -19,7 +19,7 @@ if (MSVC)
 	    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
-set(OUTPUT_DIR ${CMAKE_BINARY_BIR}/bin)
+set(OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
 
 foreach(CONFIG Debug Release Dist)
 	string(TOUPPER ${CONFIG} CONFIG_UPPER)
