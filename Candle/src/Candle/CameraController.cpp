@@ -7,7 +7,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/norm.hpp>
 
-Candle::CameraController::CameraController(float fov, float aspect, float zNear, float zFar, const glm::vec3& pos, glm::quat& rot)
+Candle::CameraController::CameraController(float fov, float aspect, float zNear, float zFar, const glm::vec3& pos, const glm::quat& rot)
 	: Camera(fov, aspect, zNear, zFar, glm::translate(glm::mat4(1), pos))
 {
 	m_FOV = fov;

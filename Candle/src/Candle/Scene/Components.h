@@ -21,6 +21,7 @@ namespace Candle
 	};
 
 
+
 	struct TagComponent
 	{
 		std::string Tag;
