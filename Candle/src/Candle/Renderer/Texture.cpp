@@ -2,7 +2,7 @@
 #include "Texture.h"
 #include "Renderer.h"
 
-#include "Platform/OpenGl/OpenGlTexture.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Candle
 {

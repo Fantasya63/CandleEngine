@@ -2,6 +2,7 @@
 #include "ImGuiLayer.h"
 
 #include "imgui.h"
+#include <imgui_internal.h>
 
 #include "Candle/Core/Application.h"
 
@@ -10,8 +11,8 @@
 #include "backends/imgui_impl_opengl3.h"
 
 //Temporary
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace Candle
 {

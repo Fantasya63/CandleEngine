@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef CD_PLATFORM_WINDOWS
+#if defined CD_PLATFORM_WINDOWS || defined CD_PLATFORM_LINUX
 
 	// Taken from glfw3.h
 

@@ -1,13 +1,13 @@
 #include "cdpch.h"
+#include <glad/glad.h>
 #include "WindowsWindow.h"
 
 #include "Candle/Events/ApplicationEvent.h"
 #include "Candle/Events/MouseEvent.h"
 #include "Candle/Events/KeyEvent.h"
 
-#include "Platform/OpenGL/OpenGlContext.h"
+#include "Platform/OpenGL/OpenGLContext.h"
 
-#include <glad/glad.h>
 
 
 namespace Candle {

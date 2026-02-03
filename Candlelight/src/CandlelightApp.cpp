@@ -28,7 +28,7 @@ namespace Candle
 	};
 
 
-	Application* Candle::CreateApplication()
+	Application* CreateApplication()
 	{
 		return new Candlelight();
 	}

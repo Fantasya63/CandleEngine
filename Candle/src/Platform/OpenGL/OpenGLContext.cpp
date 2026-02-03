@@ -1,8 +1,8 @@
 #include "cdpch.h"
-#include "OpenGlContext.h"
+#include "OpenGLContext.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace Candle
 {

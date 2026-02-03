@@ -8,7 +8,7 @@
 namespace Candle {
 
 	// Currently a blocking Event
-
+    
 	enum class EventType
 	{
 		None = 0,
@@ -28,7 +28,7 @@ namespace Candle {
 		EventCategoryMouseButton	= BIT(4)
 	};
 
-#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::##type; }\
+#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type;}
 
@@ -37,8 +37,6 @@ namespace Candle {
 
 	class Event
 	{
-		friend class EventDispatcher;
-
 	public:
 
 		bool m_Handled = false;
