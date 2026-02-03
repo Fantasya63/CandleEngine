@@ -11,7 +11,7 @@ endif()
 
 
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Static runtime (MSVC only)
@@ -19,7 +19,7 @@ if (MSVC)
 	    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
-set(OUTPUT_DIR ${CMAKE_BINARY_BIR}/bin)
+set(OUTPUT_DIR ${CMAKE_BINARY_DIR}/bin)
 
 foreach(CONFIG Debug Release Dist)
 	string(TOUPPER ${CONFIG} CONFIG_UPPER)

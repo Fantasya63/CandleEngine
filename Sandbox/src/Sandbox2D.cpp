@@ -8,7 +8,8 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnUpdate(Candle::Timestep ts)
 {
-	Candle::RenderCommand::SetClearColor(glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
+	glm::vec4 clearColor = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	Candle::RenderCommand::SetClearColor(clearColor);
 	Candle::RenderCommand::Clear();
 
 	m_Camera2D.Update(ts);
